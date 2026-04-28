@@ -153,11 +153,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download artifacts
+      - name: Download Linux binary
         uses: actions/download-artifact@v4
         with:
+          name: linux-x86_64
           path: dist
-          merge-multiple: true
+
+      - name: Download Windows binary
+        uses: actions/download-artifact@v4
+        with:
+          name: windows-x86_64
+          path: dist
+
+      - name: Download libraries archive
+        uses: actions/download-artifact@v4
+        with:
+          name: libraries
+          path: dist
 
       - name: Prepare release metadata
         run: |
